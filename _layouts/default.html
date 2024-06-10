@@ -1,41 +1,36 @@
 ---
 ---
 
-<!DOCTYPE html>
-<html class="">
+<!doctype html>
+{% include copyright.html %}
+<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
   <head>
-    <meta charset="UTF-8">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ site.data.settings.seo.description }}">
-    <meta rel="author" href="{{ site.data.settings.seo.rel-author }}">
-    <meta rel="publisher" href="{{ site.data.settings.seo.rel-publisher }}">
-    <title>
-      {% if page.title == "Home" %}
-        {{ site.title }}
-      {% else %}
-        {{ page.title }} | {{ site.title }}
-      {% endif %}
-    </title>
-    <link rel="stylesheet" href="{{ site.github.url }}/assets/css/all.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <!-- Use Atom -->
-    {% feed_meta %}
-    <script type="text/javascript" async
-      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-    </script>
-    {% include analytics.html %}
-    <!-- Use Jekyll SEO plugin -->
-    {% seo %}
+    {% include head.html %}
+    {% include head/custom.html %}
   </head>
-  <body>
-    <div class="site-container">
-      {% include header.html %}
+
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
+    {% include_cached skip-links.html %}
+    {% include_cached masthead.html %}
+
+    <div class="initial-content">
       {{ content }}
-      {% include footer.html %}
+      {% include after-content.html %}
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    {% if site.search == true %}
+      <div class="search-content">
+        {% include_cached search/search_form.html %}
+      </div>
+    {% endif %}
+
+    <div id="footer" class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include_cached footer.html %}
+      </footer>
+    </div>
+
+    {% include scripts.html %}
   </body>
 </html>
