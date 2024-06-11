@@ -1,7 +1,16 @@
 ---
-layout: archive
+layout: framework
+sidebar: tag-list
 ---
 
-{{ content }}
+{%- if site.posts.size > 0 -%}
 
-{% include posts-taxonomy.html taxonomies=site.tags %}
+  {%- include functions.html func='log' level='debug' msg='Get tags value' -%}
+  {%- include functions.html func='get_tags' -%}
+  {% assign tags = return %}
+
+  {% assign keys = tags %}
+  {% assign field = 'tags' %}
+  {%- include views/segments.html -%}
+
+{%- endif -%}
