@@ -237,12 +237,6 @@ yat:
 #   theme: "github-light"
 #   follow_site_theme: true
 
-# Page default value
-  defaults:
-  home:
-    heading: "Welcome to world"
-    subheading: "Your awesome subheading"
-    banner: "Your image url"
 
 # Build settings
 # highlighter: none
